@@ -3,12 +3,18 @@ const gridContainer = document.querySelector('.grid-container');
 const btnGenerate = document.querySelector('.btn-generate');
 const difficulty = document.getElementById('choose');
 
+let arrayBombs = [];
+const numBombs = 16;
+let cellNumbers = 100;
+
 
 btnGenerate.addEventListener('click', function (){
   let difficultyValue = difficulty.value;
   
   if(difficultyValue === 'easy'){
     easy();
+    
+    
   } else if(difficultyValue === 'medium'){
     medium();
   } else if(difficultyValue === 'hard'){
@@ -26,7 +32,14 @@ function easy(){
 for (let i = 1; i <= 100; i++) {
   const square = mySquare(i);
   gridContainer.append(square);
-}
+};
+
+getBombs();
+
+
+// creazione del ciclo che mi genera l'array con numeri casuali per le bombe   
+
+
 }
 
 function medium(){
@@ -68,6 +81,28 @@ function mySquare(index){
   return sq
 }
 
+// function random number 
+function getRandomNumber(min, max){
+
+  const randomNumber = Math.round(Math.random() * (max - min) + min);
+
+  return randomNumber;
+
+}
+
+function getBombs(){
+  const max = 16;
+  while (arrayBombs.length < max){
+    let bomb = getRandomNumber(1, cellNumbers);
+    
+    if(!arrayBombs.includes(bomb)){
+      arrayBombs.push(bomb);
+    }
+  }
+  return arrayBombs;
+}
+
+console.log(arrayBombs);
 
 
 function reset(){
