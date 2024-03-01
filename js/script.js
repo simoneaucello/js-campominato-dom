@@ -5,7 +5,7 @@ const difficulty = document.getElementById('choose');
 let score = 0;
 let arrayBombs = [];
 const numBombs = 16;
-let cellNumbers = 100;
+let cellNumbers;
 let youWin;
 
 
@@ -13,9 +13,7 @@ btnGenerate.addEventListener('click', function (){
   let difficultyValue = difficulty.value;
   
   if(difficultyValue === 'easy'){
-    easy();
-    
-    
+    easy();   
   } else if(difficultyValue === 'medium'){
     medium();
   } else if(difficultyValue === 'hard'){
@@ -29,6 +27,8 @@ btnGenerate.addEventListener('click', function (){
 
 function easy(){
   reset();
+  cellNumbers = 100;
+  
   // genero 100 square con un ciclo for
 for (let i = 1; i <= 100; i++) {
   const square = mySquare(i);
@@ -37,31 +37,34 @@ for (let i = 1; i <= 100; i++) {
 
 getBombs();
 
-
-
-// creazione del ciclo che mi genera l'array con numeri casuali per le bombe   
-
-
 }
 
 function medium(){
   reset();
+  cellNumbers = 81;
   // genero 81 square con un ciclo for
 for (let i = 1; i <= 81; i++) {
   const square = mySquare(i);
   gridContainer.append(square);
   square.classList.add('medium');
 }
+
+getBombs();
+
 }
 
 function hard(){
   reset();
+  cellNumbers = 49;
   // genero 49 square con un ciclo for
 for (let i = 1; i <= 49; i++) {
   const square = mySquare(i);
   gridContainer.append(square);
   square.classList.add('hard');
 }
+
+getBombs();
+
 }
 
 
@@ -75,6 +78,7 @@ function mySquare(index){
     checkBomb(this);
     this.classList.add('clicked')
     score++;
+    winner();
 
   console.log(index);
   })
@@ -110,6 +114,7 @@ function checkBomb(sq) {
     sq.classList.add('bomb');
     youWin = false;
     showBombs()
+    result()
   }
 }
 
@@ -129,13 +134,35 @@ function showBombs() {
   }
 }
 
+function winner(){
+  const win = document.querySelectorAll('.square');
+  if(win.length === (cellNumbers - numBombs)){
+    youWin = true;
+    result()
+  }
+}
 
+function result(){
+  const message = document.createElement('div');
+  message.className = 'finish';
 
+  if(youWin){
+    message.classList.add('winner');
+    message.innerHTML = ` YOU WIN!<br>Score:<br>${score}/${cellNumbers}`;
+  } else{
+    message.classList.add('loser');
+    message.innerHTML = ` YOU LOSE!<br>Score:<br>${score}/${cellNumbers}`;
 
+  }
 
+  gridContainer.append(message);
+
+}
 
 
 
 function reset(){
   gridContainer.innerHTML = '';
+  score = 0;
+  arrayBombs.splice(0);
 }

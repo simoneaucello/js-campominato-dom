@@ -35,6 +35,7 @@
   background-color: #fd924000;
   width: 800px;
   aspect-ratio: 1;
+  position: relative;
 }
 
 .square {
@@ -53,31 +54,12 @@
 
 .medium{
   width: calc(100% / 9);
-  height: calc(100% / 9);
-  aspect-ratio: 1;
-  background-color: #eeb32d;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  flex-grow: 1;
-  box-shadow: inset 0px 0px 20px 5px rgb(58, 55, 55);
-  
+  height: calc(100% / 9); 
 }
 
 .hard{
   width: calc(100% / 7);
   height: calc(100% / 7);
-  aspect-ratio: 1;
-  background-color: #eeb32d;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  flex-grow: 1;
-  box-shadow: inset 0px 0px 20px 5px rgb(58, 55, 55);
 }
 
 .clicked{
@@ -86,4 +68,26 @@
 
 .bomb{
   background-color: #fff;
+}
+
+.finish{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 8rem;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, .5);
+  
+}
+
+.winner{
+  color: green;
+}
+
+.loser{
+  color: red;
 }
