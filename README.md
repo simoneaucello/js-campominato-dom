@@ -43,4 +43,3 @@ FINE GIOCO
 - congelo la griglia
 - stampo il messaggio finale con punteggio. Messaggio diverso se vince o perde.
 
-## SVOLGIMENTO
