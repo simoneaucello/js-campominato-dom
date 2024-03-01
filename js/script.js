@@ -1,6 +1,7 @@
 
 const gridContainer = document.querySelector('.grid-container');
 const btnGenerate = document.querySelector('.btn-generate');
+const btnRestart = document.querySelector('.btn-restart');
 const difficulty = document.getElementById('choose');
 let score = 0;
 let arrayBombs = [];
@@ -9,7 +10,15 @@ let cellNumbers;
 let youWin;
 
 
-btnGenerate.addEventListener('click', function (){
+btnGenerate.addEventListener('click',play);
+
+btnRestart.addEventListener('click',play);
+
+
+
+///// FUNCTION /////
+
+function play(){
   let difficultyValue = difficulty.value;
   
   if(difficultyValue === 'easy'){
@@ -19,16 +28,11 @@ btnGenerate.addEventListener('click', function (){
   } else if(difficultyValue === 'hard'){
     hard();
   }
-})
-
-
-
-///// FUNCTION /////
+}
 
 function easy(){
   reset();
   cellNumbers = 100;
-  
   // genero 100 square con un ciclo for
 for (let i = 1; i <= 100; i++) {
   const square = mySquare(i);
@@ -92,7 +96,6 @@ function getRandomNumber(min, max){
   const randomNumber = Math.round(Math.random() * (max - min) + min);
 
   return randomNumber;
-
 }
 
 // funzione crea bombe
@@ -152,11 +155,9 @@ function result(){
   } else{
     message.classList.add('loser');
     message.innerHTML = ` YOU LOSE!<br>Score:<br>${score}/${cellNumbers}`;
-
   }
 
   gridContainer.append(message);
-
 }
 
 

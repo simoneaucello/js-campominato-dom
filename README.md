@@ -17,7 +17,7 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 
 - accendere tutte le bombe
 - congelare la griglia
-## LOGICA VISTA IN CLASSE
+## LOGICA
 PLAY
 - leggo la proprietà della griglia (livello)
 - RESET
