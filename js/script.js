@@ -3,6 +3,9 @@ const gridContainer = document.querySelector('.grid-container');
 const btnGenerate = document.querySelector('.btn-generate');
 const btnRestart = document.querySelector('.btn-restart');
 const difficulty = document.getElementById('choose');
+const soundTrack = new Audio('sounds/minefield-soundtrack.mp3');
+const suspance = new Audio('sounds/suspance-fxx.mp3');
+const explosion = new Audio('sounds/explosion.mp3');
 let score = 0;
 let arrayBombs = [];
 const numBombs = 16;
@@ -106,9 +109,11 @@ function getBombs(){
     
     if(!arrayBombs.includes(bomb)){
       arrayBombs.push(bomb);
+      suspance.play();
     }
   }
   return arrayBombs;
+  
 }
 
 // funzione verifica bombe 
@@ -116,7 +121,9 @@ function checkBomb(sq) {
   if (arrayBombs.includes(sq._sqID)) {
     sq.classList.add('bomb');
     youWin = false;
-    showBombs()
+    showBombs();   
+    explosion.play();
+    soundTrack.pause();
     result()
   }
 }
@@ -130,7 +137,8 @@ function showBombs() {
     for (let i = 0; i < allGrid.length; i++) {
       if (allGrid[i]._sqID === arrayBombs[counter]) {
         allGrid[i].classList.add('bomb');
-        allGrid[i].innerHTML = '<i class="fa-solid fa-burst fa-xl"></i>';
+        allGrid[i].innerHTML = `<img src=" ${'img/explosion.png'}"/>`;
+        // allGrid[i].innerHTML = '<i class="fa-solid fa-burst fa-xl"></i>';
       }
     }
     counter++;
@@ -154,7 +162,7 @@ function result(){
     message.innerHTML = ` YOU WIN!<br>Score:<br>${score}/${cellNumbers}`;
   } else{
     message.classList.add('loser');
-    message.innerHTML = ` YOU LOSE!<br>Score:<br>${score}/${cellNumbers}`;
+    message.innerHTML = ` GAME OVER<br>Score:<br>${score}/${cellNumbers}`;
   }
 
   gridContainer.append(message);
