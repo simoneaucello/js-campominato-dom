@@ -16,9 +16,10 @@ body{
 }
 
 
+
 .btn-generate{
   margin: 0 auto;
-  margin-top: 45%;
+  /* margin-top: 20%; */
   width: 400px;
   height: 10%;
   border-radius: 20px;
@@ -52,7 +53,7 @@ button:hover {
 
 .difficulty{
   position: absolute;
-  top: 5px;
+  top: 0px;
   text-align: center;
   margin-top: 20px;
   width: 200px;
@@ -68,9 +69,13 @@ button:hover {
 
 .grid-container{
   background-color: #fd924000;
-  width: 750px;
+  width: 40%;
   aspect-ratio: 1;
   position: relative;
+}
+
+.grid-container img{
+  width: 75px;
 }
 
 .square {
@@ -113,7 +118,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 8rem;
+  font-size: 6rem;
   font-weight: bold;
   background-color: rgba(0, 0, 0, .7);  
 }
